@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "clothes")
-public class Clothes {
+@Table(name = "garment")
+public class Garment {
 
     @Id // This marks a field as a primary key (unique identifier for each record)
     @Column(name = "itemId")// Like @Table, allows us to provide configuration details about the column itself'
@@ -22,16 +22,16 @@ public class Clothes {
     @Column(name = "color")
     private String color;
 
-    public Clothes() {
+    public Garment() {
     }
 
-    public Clothes(String color, String size, String category) {
+    public Garment(String color, String size, String category) {
         this.color = color;
         this.size = size;
         this.category = category;
     }
 
-    public Clothes(int id, String color, String size, String category) {
+    public Garment(int id, String color, String size, String category) {
         this.id = id;
         this.color = color;
         this.size = size;
@@ -74,8 +74,8 @@ public class Clothes {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clothes clothes = (Clothes) o;
-        return id == clothes.id && Objects.equals(category, clothes.category) && Objects.equals(size, clothes.size) && Objects.equals(color, clothes.color);
+        Garment garment = (Garment) o;
+        return id == garment.id && Objects.equals(category, garment.category) && Objects.equals(size, garment.size) && Objects.equals(color, garment.color);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Clothes {
 
     @Override
     public String toString() {
-        return "Clothes{" +
+        return "garment{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
                 ", size='" + size + '\'' +
