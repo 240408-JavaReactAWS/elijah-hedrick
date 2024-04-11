@@ -45,4 +45,15 @@ public class GarmentController {
         }
         return new ResponseEntity<>(garment, OK);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<List<Garment>> deleteGarmentByIdHandler(@PathVariable int id) {
+        List<Garment> garments;
+        try {
+            garments = gs.deleteGarmentById(id);
+        } catch (GarmentNotFoundException e) {
+            return new ResponseEntity<>(NOT_FOUND);
+        }
+        return new ResponseEntity<>(garments, OK);
+    }
 }

@@ -29,4 +29,10 @@ public class GarmentService {
     public Garment findGarmentById (int id) {
         return gd.findById(id).orElseThrow(() -> new GarmentNotFoundException("No User found with id: " + id));
     }
+
+    public List<Garment> deleteGarmentById(int id) {
+        gd.delete(this.findGarmentById(id));
+        return this.getAllGarments(); // to check if the item is successfully deleted
+    }
+
 }
