@@ -22,7 +22,7 @@ public class VendorService {
         return vendorDAO.save(vendor);
     }
 
-    public Vendor getVendor(Vendor vendor) {
+    public Vendor loginAsVendor(Vendor vendor) {
         Vendor foundVendor = vendorDAO.findByVendorNameAndPassword(vendor.getVendorName(), vendor.getPassword());
         return vendorDAO.findById(foundVendor.getVendorId()).orElseThrow(()
                 -> new VendorNotFoundException("!! Incorrect Vendor Name or Password !!"));

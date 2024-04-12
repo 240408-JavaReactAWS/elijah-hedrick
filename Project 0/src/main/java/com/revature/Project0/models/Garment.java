@@ -21,21 +21,25 @@ public class Garment {
     private String size;
     @Column(name = "color")
     private String color;
+    @Column(name = "vendor")
+    private String vendorName;
 
     public Garment() {
     }
 
-    public Garment(String color, String size, String category) {
+    public Garment(String color, String size, String category, String vendorName) {
         this.color = color;
         this.size = size;
         this.category = category;
+        this.vendorName = vendorName;
     }
 
-    public Garment(int id, String color, String size, String category) {
+    public Garment(int id, String color, String size, String category, String vendorName) {
         this.id = id;
         this.color = color;
         this.size = size;
         this.category = category;
+        this.vendorName = vendorName;
     }
 
     public int getId() {
@@ -54,6 +58,8 @@ public class Garment {
         return category;
     }
 
+    public String getvendorName() { return vendorName; }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -70,17 +76,19 @@ public class Garment {
         this.category = category;
     }
 
+    public void setVendor(String vendorName) { this.vendorName = vendorName; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Garment garment = (Garment) o;
-        return id == garment.id && Objects.equals(category, garment.category) && Objects.equals(size, garment.size) && Objects.equals(color, garment.color);
+        return id == garment.id && Objects.equals(category, garment.category) && Objects.equals(size, garment.size) && Objects.equals(color, garment.color) && Objects.equals(vendorName, garment.vendorName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, size, color);
+        return Objects.hash(id, category, size, color, vendorName);
     }
 
     @Override
@@ -90,6 +98,8 @@ public class Garment {
                 ", category='" + category + '\'' +
                 ", size='" + size + '\'' +
                 ", color='" + color + '\'' +
+                "i, vendor=" + vendorName +
                 '}';
     }
+
 }

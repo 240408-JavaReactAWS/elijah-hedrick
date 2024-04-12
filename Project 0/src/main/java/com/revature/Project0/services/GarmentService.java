@@ -1,6 +1,7 @@
 package com.revature.Project0.services;
 
 import com.revature.Project0.models.Garment;
+import com.revature.Project0.models.Vendor;
 import com.revature.Project0.repos.GarmentDAO;
 import com.revature.Project0.exceptions.GarmentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 public class GarmentService {
     private GarmentDAO gd;
+    private VendorService vs;
 
     @Autowired
     public GarmentService(GarmentDAO gd) {
@@ -27,12 +29,17 @@ public class GarmentService {
     }
 
     public Garment findGarmentById (int id) {
-        return gd.findById(id).orElseThrow(() -> new GarmentNotFoundException("No User found with id: " + id));
+        return gd.findById(id).orElseThrow(() -> new GarmentNotFoundException("No Garment found with id: " + id));
     }
 
     public List<Garment> deleteGarmentById(int id) {
         gd.delete(this.findGarmentById(id));
         return this.getAllGarments(); // to check if the item is successfully deleted
+    }
+
+    public List<Garment> findGarmentByVendor (Vendor vendor) {
+       // return gd.findAllByVendorName(vs.getVendor(vendor).getVendorName());
+        return gd.findAllByVendorName(vendor.getVendorName());
     }
 
 }

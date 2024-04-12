@@ -1,8 +1,10 @@
 package com.revature.Project0.controllers;
 
 import com.revature.Project0.models.Garment;
+import com.revature.Project0.models.Vendor;
 import com.revature.Project0.services.GarmentService;
 import com.revature.Project0.exceptions.GarmentNotFoundException;
+import com.revature.Project0.services.VendorService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +21,11 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/garments")
 public class GarmentController {
     private GarmentService gs;
+    private VendorService vs;
 
     @Autowired
-    public GarmentController(GarmentService gs) {
-        this.gs = gs;
+    public GarmentController(GarmentService gs, VendorService vs) {
+        this.gs = gs; this.vs = vs;
     }
 
     @PostMapping
@@ -55,5 +58,11 @@ public class GarmentController {
             return new ResponseEntity<>(NOT_FOUND);
         }
         return new ResponseEntity<>(garments, OK);
+    }
+
+    @GetMapping("/mygarments")
+    public List<Garment> getAllMyGarmentsHandler(@RequestBody Vendor vendor) {
+        vs.loginAsVendor(vendor);
+        return gs.findGarmentByVendor(vendor);
     }
 }

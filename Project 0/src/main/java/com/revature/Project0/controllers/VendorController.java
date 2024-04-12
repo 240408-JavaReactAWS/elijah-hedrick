@@ -23,6 +23,6 @@ public class VendorController {
 
     @GetMapping
     public Vendor loginVendorHandler(@RequestBody Vendor vendor) {
-        return vendorService.getVendor(vendor);
+        return vendorService.loginAsVendor(vendor);
     }
 }
