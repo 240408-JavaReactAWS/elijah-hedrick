@@ -42,4 +42,7 @@ public class GarmentService {
         return gd.findAllByVendorName(vendor.getVendorName());
     }
 
+    public Garment updateGarment (Garment garment ) {
+        return gd.save(garment);
+    }
 }

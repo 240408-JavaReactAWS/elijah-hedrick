@@ -65,4 +65,14 @@ public class GarmentController {
         vs.loginAsVendor(vendor);
         return gs.findGarmentByVendor(vendor);
     }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<Garment> patchGarmentHandler(@RequestBody Garment garment) {
+        try {
+            Garment g = gs.findGarmentById(garment.getId());
+        } catch (GarmentNotFoundException e) {
+            return new ResponseEntity<>(NOT_FOUND);
+        }
+        return new ResponseEntity<>(gs.updateGarment(garment), OK);
+    }
 }
