@@ -66,7 +66,7 @@ public class GarmentController {
         return gs.findGarmentByVendor(vendor);
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping
     public ResponseEntity<Garment> patchGarmentHandler(@RequestBody Garment garment) {
         try {
             Garment g = gs.findGarmentById(garment.getId());
